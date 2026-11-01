@@ -67,5 +67,13 @@ return {
 // TODO (you): get the current weather and a 3-day daily forecast from the
 // forecast API and return the parsed response.
 export async function getForecast(latitude, longitude) {
-  throw new Error('getForecast is not written yet');
+  const url = new URL(`${config.forecastUrl}/forecast`);
+
+  url.searchParams.set('latitude', latitude);
+  url.searchParams.set('longitude', longitude);
+  url.searchParams.set('current', 'temperature_2m_max,temperature_2m_min, precipitation_probability_max, weather_code ');
+  url.searchParams.set('forecast_days', '3');
+  url.searchParams.set('timezone', 'auto');
+
+  return await fetchJson(url);
 }
