@@ -5,6 +5,11 @@ import { describeWeatherCode } from './weather-codes.js';
 // TODO (you): create one cache for the whole app, with a time to live of
 // config.cacheTtlSeconds.
 
+const cache = new Map();
+
+let hits = 0;
+let misses = 0;
+
 // TODO (you): return the weather summary for one city, in the shape shown on
 // the assignment page. Check the cache first. On a miss, geocode the city, get
 // the forecast, build the summary, store it, and return it with cached: false.
