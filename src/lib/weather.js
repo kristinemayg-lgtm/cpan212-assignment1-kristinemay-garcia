@@ -29,6 +29,17 @@ export async function getCityWeather(city) {
 const location = await geocodeCity(city);
 const forecast = await getForecast(location.latitude, location.longitude);
 
+const weather = {
+  location: {
+    name: location.name,
+    region: location.region,
+    country: location.country,
+    latitude: location.latitude,
+    longitude: location.longitude,
+    timezone: location.timezone,
+  },
+
+};
 // TODO (you): return the cache statistics for GET /api/cache/stats.
 export function getCacheStats() {
   throw new Error('getCacheStats is not written yet');
