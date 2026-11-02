@@ -47,6 +47,15 @@ const weather = {
     wind: forecast.current.wind_speed_10m,
     conditions: describeWeatherCode(forecast.current.weather_code),
 },
+  conditions: describeWeatherCode(forecast.current.weather_code),
+  daily: forecast.daily.map((date, index) => ({
+    date,
+    min: forecast.daily.temperature_2m_min[index],
+    max: forecast.daily.temperature_2m_max[index],
+    precipitationProbability: forecast.daily.precipitation_probability_max[index],
+    weatherCode: forecast.daily.weather_code[index],
+    conditions: describeWeatherCode(forecast.daily.weather_code[index]),
+  })),
 };
 // TODO (you): return the cache statistics for GET /api/cache/stats.
 export function getCacheStats() {
