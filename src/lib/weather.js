@@ -38,7 +38,15 @@ const weather = {
     longitude: location.longitude,
     timezone: location.timezone,
   },
-
+  current: {
+    temperature: forecast.current.temperature_2m,
+    weatherCode: forecast.current.weather_code,
+    time: forecast.current.time,
+    feelsLike: forecast.current.feels_like,
+    humidity: forecast.current.humidity_2m,
+    wind: forecast.current.wind_speed_10m,
+    conditions: describeWeatherCode(forecast.current.weather_code),
+},
 };
 // TODO (you): return the cache statistics for GET /api/cache/stats.
 export function getCacheStats() {
