@@ -57,6 +57,12 @@ const weather = {
     conditions: describeWeatherCode(forecast.daily.weather_code[index]),
   })),
 };
+
+weather.fetchedAt = new Date().toISOString();
+weather.cached = false;
+
+cache.set(key, { weather, expiresAt: Date.now() + config.cacheTtlSeconds * 1000 });
+return weather;
 // TODO (you): return the cache statistics for GET /api/cache/stats.
 export function getCacheStats() {
   throw new Error('getCacheStats is not written yet');
