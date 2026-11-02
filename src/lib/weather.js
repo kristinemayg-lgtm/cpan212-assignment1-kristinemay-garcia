@@ -15,7 +15,15 @@ let misses = 0;
 // the forecast, build the summary, store it, and return it with cached: false.
 // On a hit, return the stored summary with cached: true.
 export async function getCityWeather(city) {
-  throw new Error('getCityWeather is not written yet');
+  const key = city.trim().toLowerCase();
+
+  const cachedData = cache.get(key);
+  if (cachedData && cachedData.expiresAt > Date.now()) {
+    hits++;
+    return { ...cachedData.weather, cached: true };
+  }
+  misses++;
+  
 }
 
 // TODO (you): return the cache statistics for GET /api/cache/stats.
